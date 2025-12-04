@@ -1,16 +1,19 @@
 ## Hi there 👋
 
 <!--
-**nexgen-hub/nexgen-hub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Modern Portfolio Website
 
-Here are some ideas to get you started:
+A responsive, multi-language portfolio website for a Full-Stack Developer with dark/light mode toggle.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+## Features
+
+- 🌓 **Dark/Light Mode** - Toggle between themes with system preference detection
+- 🌐 **Multi-language Support** - English, French, and Arabic with RTL support for Arabic
+- 📱 **Fully Responsive** - Works on all devices (desktop, tablet, mobile)
+- ⚡ **Fast & Performant** - Optimized CSS and JavaScript
+- 🎨 **Modern Design** - Clean, minimalist aesthetic with smooth animations
+- 📝 **Contact Form** - Functional contact form with validation
+- 🔗 **Social Integration** - Links to GitHub, LinkedIn, and other profiles
+
+## Project Structure
 -->
