@@ -1,6 +1,3 @@
-## Hi there 👋
-
-<!--
 # Modern Portfolio Website
 
 A responsive, multi-language portfolio website for a Full-Stack Developer with dark/light mode toggle.
@@ -16,4 +13,4 @@ A responsive, multi-language portfolio website for a Full-Stack Developer with d
 - 🔗 **Social Integration** - Links to GitHub, LinkedIn, and other profiles
 
 ## Project Structure
--->
+
