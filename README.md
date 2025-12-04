@@ -10,5 +10,3 @@ A responsive, multi-language portfolio website for a Full-Stack Developer with d
 - 🎨 **Modern Design** - Clean, minimalist aesthetic with smooth animations
 - 📝 **Contact Form** - Functional contact form with validation
 - 🔗 **Social Integration** - Links to GitHub, LinkedIn, and other profiles
-
-## Project Structure
