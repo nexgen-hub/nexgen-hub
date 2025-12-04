@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habib Ghalem | Full-Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Variables - Light Mode (Default) */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --gray-dark: #475569;
+            --success: #10b981;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --card-bg: #ffffff;
+            --body-bg: #f8fafc;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --header-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --primary: #3b82f6;
+            --primary-dark: #60a5fa;
+            --secondary: #94a3b8;
+            --dark: #f1f5f9;
+            --light: #0f172a;
+            --gray: #334155;
+            --gray-dark: #cbd5e1;
+            --success: #10b981;
+            --card-bg: #1e293b;
+            --body-bg: #0f172a;
+            --text-color: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --header-bg: rgba(30, 41, 59, 0.95);
+        }
+
+        /* RTL Support for Arabic */
+        html[dir="rtl"] .hero-content,
+        html[dir="rtl"] .about-content,
+        html[dir="rtl"] .contact-container {
+            text-align: right;
+        }
+
+        html[dir="rtl"] h2:after {
+            left: auto;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        html[dir="rtl"] .skill-list li i {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        html[dir="rtl"] .contact-item i {
+            margin-right: 0;
+            margin-left: 1rem;
+        }
+
+        html[dir="rtl"] .nav-links li {
+            margin-left: 0;
+            margin-right: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--body-bg);
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: 1px solid var(--gray);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .language-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 150px;
+            display: none;
+            z-index: 1001;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+        }
+
+        .language-dropdown.show {
+            display: block;
+        }
+
+        .language-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .language-option:hover {
+            background-color: var(--gray);
+        }
+
+        /* Dark/Light Mode Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid var(--gray);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            background-color: var(--gray);
+        }
+
+        .theme-toggle .fa-sun {
+            display: none;
+        }
+
+        body.dark-mode .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        body.dark-mode .theme-toggle .fa-sun {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: var(--gray);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-color);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category h4 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 1rem 0;
+        }
+
+        .project-tag {
+            background: var(--gray);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero {
+                padding-top: 150px;
+                text-align: center;
+            }
+            
+            .tech-badges {
+                justify-content: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-controls {
+                position: absolute;
+                right: 70px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-controls {
+                right: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">HG<span>.</span></a>
+                <div class="nav-controls">
+                    <div class="language-selector">
+                        <button class="language-btn" id="languageBtn">
+                            <i class="fas fa-globe"></i>
+                            <span id="currentLanguage">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-option" data-lang="en">
+                                <span>🇬🇧</span> English
+                            </div>
+                            <div class="language-option" data-lang="fr">
+                                <span>🇫🇷</span> Français
+                            </div>
+                            <div class="language-option" data-lang="ar">
+                                <span>🇸🇦</span> العربية
+                            </div>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" data-key="nav.home">Home</a></li>
+                    <li><a href="#about" data-key="nav.about">About</a></li>
+                    <li><a href="#skills" data-key="nav.skills">Skills</a></li>
+                    <li><a href="#projects" data-key="nav.projects">Projects</a></li>
+                    <li><a href="#contact" class="btn btn-outline" data-key="nav.contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-key="hero.title">Full-Stack Developer & AI Integrator</h1>
+                <p data-key="hero.subtitle">I build <span class="highlight">interactive, modern, and performant</span> web, desktop & mobile applications with cutting-edge technologies and AI integration. Focused on delivering exceptional user experiences.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn" data-key="hero.viewWork">View My Work</a>
+                    <a href="#contact" class="btn btn-outline" data-key="hero.hireMe">Hire Me</a>
+                </div>
+                <div class="tech-badges">
+                    <div class="tech-badge">Angular</div>
+                    <div class="tech-badge">TypeScript</div>
+                    <div class="tech-badge">NestJS</div>
+                    <div class="tech-badge">Node.js</div>
+                    <div class="tech-badge">Python</div>
+                    <div class="tech-badge">AI Integration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 data-key="about.title">About Me</h2>
+            <div class="about-content">
+                <div>
+                    <h3 data-key="about.subtitle">Building the Future, One Line of Code at a Time</h3>
+                    <p data-key="about.text1">I'm Habib Ghalem, a passionate full-stack developer with expertise in creating robust, scalable applications. My focus is on merging modern web technologies with artificial intelligence to build solutions that are not only functional but intelligent.</p>
+                    <p data-key="about.text2">With a strong foundation in both frontend (Angular) and backend (NestJS, Node.js, Django), I deliver complete solutions from concept to deployment. I'm currently open for freelance opportunities and collaborative open-source projects.</p>
+                    <a href="https://github.com/nexgen-hub" target="_blank" class="btn" data-key="about.github">Explore GitHub</a>
+                </div>
+                <div>
+                    <h4 data-key="about.expertise">My Expertise</h4>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4 data-key="skills.frontend">Frontend</h4>
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check"></i> Angular</li>
+                                <li><i class="fas fa-check"></i> TypeScript</li>
+                                <li><i class="fas fa-check"></i> Bootstrap 5</li>
+                                <li><i class="fas fa-check"></i> Tailwind CSS</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4 data-key="skills.backend">Backend</h4>
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check"></i> NestJS</li>
+                                <li><i class="fas fa-check"></i> Node.js</li>
+                                <li><i class="fas fa-check"></i> Django REST</li>
+                                <li><i class="fas fa-check"></i> PostgreSQL</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4 data-key="skills.specializations">Specializations</h4>
+                            <ul class="skill-list">
+                                <li><i class="fas fa-check"></i> AI Integration</li>
+                                <li><i class="fas fa-check"></i> Responsive Design</li>
+                                <li><i class="fas fa-check"></i> Performance</li>
+                                <li><i class="fas fa-check"></i> Mobile Apps</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" style="background-color: var(--body-bg);">
+        <div class="container">
+            <h2 data-key="projects.title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 data-key="projects.project1.title">AI-Powered Analytics Dashboard</h3>
+                        <p data-key="projects.project1.description">A comprehensive dashboard with real-time data visualization and predictive analytics powered by machine learning models.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Angular</span>
+                            <span class="project-tag">NestJS</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">TensorFlow.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" data-key="projects.demo">Live Demo</a>
+                            <a href="#" class="btn btn-outline" data-key="projects.code">Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 data-key="projects.project2.title">E-Commerce Mobile App</h3>
+                        <p data-key="projects.project2.description">Cross-platform mobile application with real-time inventory management, payment integration, and personalized recommendations.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Ionic</span>
+                            <span class="project-tag">Angular</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">Stripe API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" data-key="projects.demo">Live Demo</a>
+                            <a href="#" class="btn btn-outline" data-key="projects.code">Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 data-key="projects.project3.title">Real-Time Collaboration Tool</h3>
+                        <p data-key="projects.project3.description">A web-based collaborative platform with live editing, video conferencing, and project management features.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">WebSockets</span>
+                            <span class="project-tag">NestJS</span>
+                            <span class="project-tag">Angular</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" data-key="projects.demo">Live Demo</a>
+                            <a href="#" class="btn btn-outline" data-key="projects.code">Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-key="contact.title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-key="contact.subtitle">Let's Work Together</h3>
+                    <p data-key="contact.text">I'm currently available for freelance projects and open-source collaborations. Whether you need a full-stack application, AI integration, or consultation, feel free to reach out.</p>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-key="contact.email">Email</h4>
+                            <p>idi.kodo@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-key="contact.location">Location</h4>
+                            <p data-key="contact.locationText">Available for remote work worldwide</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/nexgen-hub" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/habib-ghalem-b86b13121/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" data-key="form.name" required>
+                        <input type="email" placeholder="Your Email" data-key="form.email" required>
+                        <input type="text" placeholder="Subject" data-key="form.subject" required>
+                        <textarea rows="5" placeholder="Your Message" data-key="form.message" required></textarea>
+                        <button type="submit" class="btn" data-key="form.send">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="logo" style="color: white;">HG<span>.</span></a>
+            <p data-key="footer.tagline">Full-Stack Developer & AI Integrator</p>
+            <div class="social-links">
+                <a href="https://github.com/nexgen-hub" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/habib-ghalem-b86b13121/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-codepen"></i></a>
+            </div>
+            <p class="copyright" data-key="footer.copyright">© 2023 Habib Ghalem. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Translation Data
+        const translations = {
+            en: {
+                // Navigation
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.skills": "Skills",
+                "nav.projects": "Projects",
+                "nav.contact": "Contact",
+                
+                // Hero
+                "hero.title": "Full-Stack Developer & AI Integrator",
+                "hero.subtitle": "I build <span class='highlight'>interactive, modern, and performant</span> web, desktop & mobile applications with cutting-edge technologies and AI integration. Focused on delivering exceptional user experiences.",
+                "hero.viewWork": "View My Work",
+                "hero.hireMe": "Hire Me",
+                
+                // About
+                "about.title": "About Me",
+                "about.subtitle": "Building the Future, One Line of Code at a Time",
+                "about.text1": "I'm Habib Ghalem, a passionate full-stack developer with expertise in creating robust, scalable applications. My focus is on merging modern web technologies with artificial intelligence to build solutions that are not only functional but intelligent.",
+                "about.text2": "With a strong foundation in both frontend (Angular) and backend (NestJS, Node.js, Django), I deliver complete solutions from concept to deployment. I'm currently open for freelance opportunities and collaborative open-source projects.",
+                "about.github": "Explore GitHub",
+                "about.expertise": "My Expertise",
+                
+                // Skills
+                "skills.frontend": "Frontend",
+                "skills.backend": "Backend",
+                "skills.specializations": "Specializations",
+                
+                // Projects
+                "projects.title": "Featured Projects",
+                "projects.demo": "Live Demo",
+                "projects.code": "Code",
+                "projects.project1.title": "AI-Powered Analytics Dashboard",
+                "projects.project1.description": "A comprehensive dashboard with real-time data visualization and predictive analytics powered by machine learning models.",
+                "projects.project2.title": "E-Commerce Mobile App",
+                "projects.project2.description": "Cross-platform mobile application with real-time inventory management, payment integration, and personalized recommendations.",
+                "projects.project3.title": "Real-Time Collaboration Tool",
+                "projects.project3.description": "A web-based collaborative platform with live editing, video conferencing, and project management features.",
+                
+                // Contact
+                "contact.title": "Get In Touch",
+                "contact.subtitle": "Let's Work Together",
+                "contact.text": "I'm currently available for freelance projects and open-source collaborations. Whether you need a full-stack application, AI integration, or consultation, feel free to reach out.",
+                "contact.email": "Email",
+                "contact.location": "Location",
+                "contact.locationText": "Available for remote work worldwide",
+                
+                // Form
+                "form.name": "Your Name",
+                "form.email": "Your Email",
+                "form.subject": "Subject",
+                "form.message": "Your Message",
+                "form.send": "Send Message",
+                
+                // Footer
+                "footer.tagline": "Full-Stack Developer & AI Integrator",
+                "footer.copyright": "© 2023 Habib Ghalem. All rights reserved."
+            },
+            
+            fr: {
+                // Navigation
+                "nav.home": "Accueil",
+                "nav.about": "À propos",
+                "nav.skills": "Compétences",
+                "nav.projects": "Projets",
+                "nav.contact": "Contact",
+                
+                // Hero
+                "hero.title": "Développeur Full-Stack & Intégrateur IA",
+                "hero.subtitle": "Je crée des applications web, desktop & mobiles <span class='highlight'>interactives, modernes et performantes</span> avec des technologies de pointe et l'intégration d'IA. Concentré sur la fourniture d'expériences utilisateur exceptionnelles.",
+                "hero.viewWork": "Voir mes projets",
+                "hero.hireMe": "M'engager",
+                
+                // About
+                "about.title": "À propos",
+                "about.subtitle": "Construire l'avenir, une ligne de code à la fois",
+                "about.text1": "Je suis Habib Ghalem, un développeur full-stack passionné avec une expertise dans la création d'applications robustes et évolutives. Je me concentre sur la fusion des technologies web modernes avec l'intelligence artificielle pour créer des solutions non seulement fonctionnelles mais intelligentes.",
+                "about.text2": "Avec une solide base à la fois en frontend (Angular) et backend (NestJS, Node.js, Django), je livre des solutions complètes du concept au déploiement. Je suis actuellement ouvert aux opportunités en freelance et aux projets open-source collaboratifs.",
+                "about.github": "Explorer GitHub",
+                "about.expertise": "Mon expertise",
+                
+                // Skills
+                "skills.frontend": "Frontend",
+                "skills.backend": "Backend",
+                "skills.specializations": "Spécialisations",
+                
+                // Projects
+                "projects.title": "Projets phares",
+                "projects.demo": "Démo",
+                "projects.code": "Code",
+                "projects.project1.title": "Tableau de bord analytique avec IA",
+                "projects.project1.description": "Un tableau de bord complet avec visualisation de données en temps réel et analytique prédictive alimentée par des modèles d'apprentissage automatique.",
+                "projects.project2.title": "Application mobile e-commerce",
+                "projects.project2.description": "Application mobile multiplateforme avec gestion d'inventaire en temps réel, intégration de paiement et recommandations personnalisées.",
+                "projects.project3.title": "Outil de collaboration en temps réel",
+                "projects.project3.description": "Une plateforme collaborative basée sur le web avec édition en direct, visioconférence et fonctionnalités de gestion de projet.",
+                
+                // Contact
+                "contact.title": "Contactez-moi",
+                "contact.subtitle": "Travaillons ensemble",
+                "contact.text": "Je suis actuellement disponible pour des projets en freelance et des collaborations open-source. Que vous ayez besoin d'une application full-stack, d'une intégration d'IA ou d'une consultation, n'hésitez pas à me contacter.",
+                "contact.email": "Email",
+                "contact.location": "Localisation",
+                "contact.locationText": "Disponible pour travail à distance dans le monde entier",
+                
+                // Form
+                "form.name": "Votre nom",
+                "form.email": "Votre email",
+                "form.subject": "Sujet",
+                "form.message": "Votre message",
+                "form.send": "Envoyer le message",
+                
+                // Footer
+                "footer.tagline": "Développeur Full-Stack & Intégrateur IA",
+                "footer.copyright": "© 2023 Habib Ghalem. Tous droits réservés."
+            },
+            
+            ar: {
+                // Navigation
+                "nav.home": "الرئيسية",
+                "nav.about": "عني",
+                "nav.skills": "المهارات",
+                "nav.projects": "المشاريع",
+                "nav.contact": "اتصل بي",
+                
+                // Hero
+                "hero.title": "مطور Full-Stack & مدمج الذكاء الاصطناعي",
+                "hero.subtitle": "أبني تطبيقات ويب، سطح مكتب وهاتف محمول <span class='highlight'>تفاعلية، عصرية وعالية الأداء</span> مع تقنيات متطورة وتكامل الذكاء الاصطناعي. أركز على تقديم تجارب مستخدم استثنائية.",
+                "hero.viewWork": "عرض أعمالي",
+                "hero.hireMe": "وظفني",
+                
+                // About
+                "about.title": "عني",
+                "about.subtitle": "أبني المستقبل، سطر كود واحد في كل مرة",
+                "about.text1": "أنا حبيب غالب، مطور Full-Stack شغوف بخبرة في إنشاء تطبيقات قوية وقابلة للتطوير. أركز على دمج تقنيات الويب الحديثة مع الذكاء الاصطناعي لبناء حلول ليست فقط وظيفية ولكن ذكية.",
+                "about.text2": "مع أساس قوي في كل من الواجهة الأمامية (Angular) والخلفية (NestJS, Node.js, Django)، أقدم حلولاً كاملة من المفهوم إلى النشر. أنا حاليًا متاح لفرص العمل الحر ومشاريع المصادر المفتوحة التعاونية.",
+                "about.github": "استعرض GitHub",
+                "about.expertise": "خبراتي",
+                
+                // Skills
+                "skills.frontend": "الواجهة الأمامية",
+                "skills.backend": "الخلفية",
+                "skills.specializations": "التخصصات",
+                
+                // Projects
+                "projects.title": "أبرز المشاريع",
+                "projects.demo": "عرض حي",
+                "projects.code": "الكود",
+                "projects.project1.title": "لوحة تحليلات مدعومة بالذكاء الاصطناعي",
+                "projects.project1.description": "لوحة تحكم شاملة مع تصور بيانات في الوقت الفعلي وتحليلات تنبؤية مدعومة بنماذج تعلم الآلة.",
+                "projects.project2.title": "تطبيق جوال للتجارة الإلكترونية",
+                "projects.project2.description": "تطبيق جوال متعدد المنصات مع إدارة مخزون في الوقت الفعلي، تكامل دفع وتوصيات مخصصة.",
+                "projects.project3.title": "أداة تعاون في الوقت الفعلي",
+                "projects.project3.description": "منصة تعاونية قائمة على الويب مع تحرير مباشر، مؤتمرات فيديو وميزات إدارة المشاريع.",
+                
+                // Contact
+                "contact.title": "اتصل بي",
+                "contact.subtitle": "لنعمل معًا",
+                "contact.text": "أنا حاليًا متاح لمشاريع العمل الحر والتعاونيات مفتوحة المصدر. سواء كنت تحتاج إلى تطبيق Full-Stack، تكامل ذكاء اصطناعي أو استشارة، لا تتردد في التواصل.",
+                "contact.email": "البريد الإلكتروني",
+                "contact.location": "الموقع",
+                "contact.locationText": "متاح للعمل عن بعد في جميع أنحاء العالم",
+                
+                // Form
+                "form.name": "اسمك",
+                "form.email": "بريدك الإلكتروني",
+                "form.subject": "الموضوع",
+                "form.message": "رسالتك",
+                "form.send": "أرسل الرسالة",
+                
+                // Footer
+                "footer.tagline": "مطور Full-Stack & مدمج الذكاء الاصطناعي",
+                "footer.copyright": "© 2023 حبيب غالب. جميع الحقوق محفوظة."
+            }
+        };
+
+        // Initialize with English
+        let currentLang = localStorage.getItem('language') || 'en';
+        const htmlElement = document.documentElement;
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.getElementById('currentLanguage').textContent = lang.toUpperCase();
+            
+            // Update HTML direction for Arabic
+            if (lang === 'ar') {
+                htmlElement.setAttribute('dir', 'rtl');
+                htmlElement.setAttribute('lang', 'ar');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                htmlElement.setAttribute('lang', lang);
+            }
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    } else {
+                        // Check if the translation contains HTML
+                        if (translations[lang][key].includes('<span')) {
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                        }
+                    }
+                }
+            });
+            
+            // Close language dropdown
+            document.getElementById('languageDropdown').classList.remove('show');
+        }
+
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            body.classList.add('dark-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Language Selector
+        const languageBtn = document.getElementById('languageBtn');
+        const languageDropdown = document.getElementById('languageDropdown');
+
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                languageDropdown.classList.remove('show');
+            }
+        });
+
+        // Language selection
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage(currentLang);
+            
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Form Submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert(currentLang === 'en' ? 'Thank you for your message! I will get back to you soon.' :
+                      currentLang === 'fr' ? 'Merci pour votre message ! Je vous répondrai bientôt.' :
+                      'شكرًا لك على رسالتك! سأعود إليك قريبًا.');
+                this.reset();
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
